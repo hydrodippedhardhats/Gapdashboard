@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Should I Buy GAP Insurance? — 2026 Sonata Hybrid</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #07111c;
+  --card: rgba(255,255,255,0.035);
+  --border: rgba(255,255,255,0.08);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #f87171;
+  --yellow: #facc15;
+  --orange: #fb923c;
+  --purple: #a78bfa;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --dim: #334155;
+  --mono: 'IBM Plex Mono', monospace;
+  --body: 'Inter', sans-serif;
+  --display: 'Syne', sans-serif;
+}
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgba(59,130,246,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(16,185,129,0.06) 0%, transparent 55%);
+  min-height: 100vh;
+  color: var(--text);
+  font-family: var(--body);
+  padding: 24px 16px 56px;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 880px; margin: 0 auto; }
+
+/* Banner */
+.banner {
+background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(16,185,129,0.08));
+border: 1px solid rgba(59,130,246,0.2);
+border-radius: 16px;
+padding: 20px 22px;
+margin-bottom: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 14px;
+animation: fadeUp 0.4s ease both;
+}
+.eyebrow { font-size: 10px; letter-spacing: 3px; color: var(–blue); text-transform: uppercase; font-family: var(–mono); margin-bottom: 5px; }
+.banner h1 { font-family: var(–display); font-size: clamp(17px,3.5vw,23px); font-weight: 800; line-height: 1.15; }
+.specs { font-size: 11px; color: var(–muted); font-family: var(–mono); margin-top: 5px; }
+.payment-pill { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 16px; text-align: center; }
+.payment-pill .pl { font-size: 10px; color: var(–muted); margin-bottom: 3px; }
+.payment-pill .pv { font-family: var(–display); font-size: 24px; font-weight: 800; }
+
+/* Explainer */
+.explainer {
+background: rgba(250,204,21,0.06);
+border: 1px solid rgba(250,204,21,0.2);
+border-radius: 12px;
+padding: 16px 20px;
+margin-bottom: 20px;
+font-size: 13px;
+line-height: 1.7;
+color: #cbd5e1;
+animation: fadeUp 0.4s 0.05s ease both;
+}
+.explainer strong { color: var(–yellow); }
+.what-is { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+.icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.example-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+@media (max-width: 480px) { .example-row { grid-template-columns: 1fr; } }
+.example-box { background: rgba(0,0,0,0.25); border-radius: 8px; padding: 10px 12px; font-size: 12px; line-height: 1.6; }
+.eb-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-family: var(–mono); }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 20px; animation: fadeUp 0.4s 0.1s ease both; }
+@media (min-width: 560px) { .stats { grid-template-columns: repeat(4,1fr); } }
+.stat { background: var(–card); border: 1px solid var(–border); border-radius: 12px; padding: 14px; transition: transform 0.2s, box-shadow 0.2s; }
+.stat:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+.stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(–muted); margin-bottom: 6px; font-family: var(–mono); }
+.stat-value { font-family: var(–display); font-size: 20px; font-weight: 800; }
+.stat-plain { font-size: 11px; color: #94a3b8; margin-top: 5px; line-height: 1.4; }
+
+/* Chart */
+.chart-card { background: var(–card); border: 1px solid var(–border); border-radius: 14px; padding: 20px 16px 16px; margin-bottom: 20px; animation: fadeUp 0.4s 0.15s ease both; }
+.chart-title { font-family: var(–display); font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+.chart-subtitle { font-size: 12px; color: var(–muted); margin-bottom: 16px; line-height: 1.7; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; font-size: 11px; color: #94a3b8; }
+.legend-item { display: flex; align-items: center; gap: 7px; }
+.legend-line { width: 18px; height: 3px; border-radius: 2px; flex-shrink: 0; }
+.legend-dash { width: 18px; height: 2px; flex-shrink: 0; background: repeating-linear-gradient(90deg, var(–yellow) 0,var(–yellow) 5px,transparent 5px,transparent 9px); }
+
+/* Comparison */
+.comparison { background: var(–card); border: 1px solid var(–border); border-radius: 14px; padding: 20px; margin-bottom: 20px; animation: fadeUp 0.4s 0.2s ease both; }
+.comparison h2 { font-family: var(–display); font-size: 15px; font-weight: 800; margin-bottom: 5px; }
+.comp-sub { font-size: 12px; color: var(–muted); margin-bottom: 16px; }
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .comp-grid { grid-template-columns: 1fr; } }
+.comp-box { border-radius: 10px; padding: 16px; border: 1px solid var(–border); }
+.comp-box.dealer { background: rgba(248,113,113,0.07); border-color: rgba(248,113,113,0.25); }
+.comp-box.insurer { background: rgba(16,185,129,0.07); border-color: rgba(16,185,129,0.25); }
+.comp-badge { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; font-family: var(–mono); margin-bottom: 8px; font-weight: 600; }
+.comp-box.dealer .comp-badge { color: var(–red); }
+.comp-box.insurer .comp-badge { color: var(–green); }
+.comp-name { font-family: var(–display); font-size: 16px; font-weight: 800; margin-bottom: 10px; }
+.comp-row { display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8; margin-bottom: 6px; gap: 10px; }
+.comp-row span:last-child { font-weight: 600; color: var(–text); text-align: right; }
+.comp-verdict { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.07); font-size: 11px; line-height: 1.6; }
+.comp-box.dealer .comp-verdict { color: #fca5a5; }
+.comp-box.insurer .comp-verdict { color: #6ee7b7; }
+
+/* Verdict */
+.verdict { border-radius: 14px; padding: 20px 22px; margin-bottom: 20px; animation: fadeUp 0.4s 0.25s ease both; border: 1px solid rgba(16,185,129,0.3); background: rgba(16,185,129,0.07); }
+.verdict-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.verdict-icon { font-size: 28px; }
+.verdict-title { font-family: var(–display); font-size: 17px; font-weight: 800; }
+.verdict-sub { font-size: 12px; color: #6ee7b7; margin-top: 2px; }
+.verdict-body { font-size: 13px; color: #cbd5e1; line-height: 1.8; }
+.verdict-body strong { color: var(–text); }
+
+/* Tooltip */
+#tooltip {
+position: fixed; background: #0c1a26; border: 1px solid #1e3a52; border-radius: 12px;
+padding: 14px 18px; font-size: 12px; color: #94a3b8; pointer-events: none;
+opacity: 0; transition: opacity 0.15s; z-index: 200; min-width: 215px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.6); font-family: var(–body);
+}
+#tooltip.visible { opacity: 1; }
+.tt-title { color: var(–text); font-weight: 700; margin-bottom: 10px; font-size: 13px; font-family: var(–display); }
+.tt-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 5px; }
+.tt-label { display: flex; align-items: center; gap: 6px; }
+.tt-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.tt-val { font-weight: 700; color: var(–text); font-family: var(–mono); font-size: 12px; }
+.tt-divider { border-top: 1px solid #1e3a52; margin: 8px 0; }
+.tt-status { font-size: 11px; padding: 6px 10px; border-radius: 6px; text-align: center; font-weight: 600; margin-top: 4px; line-height: 1.5; }
+.tt-status.gap { background: rgba(248,113,113,0.15); color: #f87171; }
+.tt-status.equity { background: rgba(16,185,129,0.15); color: #34d399; }
+
+.footer { font-size: 10px; color: var(–dim); text-align: center; line-height: 1.9; font-family: var(–mono); animation: fadeUp 0.4s 0.3s ease both; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+canvas { touch-action: none; }
+</style>
+
+</head>
+<body>
+<div class="container">
+
+  <div class="banner">
+    <div>
+      <div class="eyebrow">GAP Insurance Decision Tool</div>
+      <h1>2026 Hyundai Sonata Hybrid<br/>Blue Trim</h1>
+      <div class="specs">72-mo loan &nbsp;·&nbsp; 1.99% APR &nbsp;·&nbsp; $28,600 financed &nbsp;·&nbsp; $3,000 down &nbsp;·&nbsp; ~10,000 mi/yr</div>
+    </div>
+    <div class="payment-pill">
+      <div class="pl">Monthly Payment</div>
+      <div class="pv" id="paymentDisplay">—</div>
+    </div>
+  </div>
+
+  <div class="explainer">
+    <div class="what-is">
+      <div class="icon">💡</div>
+      <div>
+        <strong>What is GAP insurance, in plain English?</strong><br/>
+        Cars lose value fast — but loan balances drop slowly. If your car gets totaled or stolen, your regular insurance only pays what the car is <em>worth right now</em>, not what you still <em>owe the bank</em>. That difference is called the "gap." Without GAP coverage, you'd have to pay that difference out of pocket — even though you no longer have the car.
+      </div>
+    </div>
+    <div class="example-row">
+      <div class="example-box">
+        <div class="eb-label" style="color:var(--red)">⚠️ Without GAP — Month 3 scenario</div>
+        Car totaled. You still owe: <strong>$27,100</strong><br/>
+        Insurance pays car's value: <strong>~$25,900</strong><br/>
+        You're stuck paying: <strong style="color:var(--red)">~$1,200 out of pocket</strong>
+      </div>
+      <div class="example-box">
+        <div class="eb-label" style="color:var(--green)">✅ With GAP — Same scenario</div>
+        Car totaled. You still owe: <strong>$27,100</strong><br/>
+        Insurance pays: <strong>~$25,900</strong><br/>
+        GAP covers the rest: <strong style="color:var(--green)">You owe $0</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">Day-1 Risk</div>
+      <div class="stat-value" id="s-gap" style="color:var(--red)">—</div>
+      <div class="stat-plain">What you'd owe out of pocket if totaled on day one</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Worst Case</div>
+      <div class="stat-value" id="s-peak" style="color:var(--orange)">—</div>
+      <div class="stat-plain" id="s-peak-sub">The most you'd ever be at risk during this loan</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Risk Is Gone By</div>
+      <div class="stat-value" id="s-cross" style="color:var(--yellow)">—</div>
+      <div class="stat-plain">After this point, the car is worth more than you owe</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Dealer GAP Total</div>
+      <div class="stat-value" id="s-gapcost" style="color:var(--purple)">—</div>
+      <div class="stat-plain">$15/mo × 72 months — what the dealer collects in total</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">What You Owe vs. What the Car Is Worth — Over 6 Years</div>
+    <div class="chart-subtitle">
+      <span style="color:var(--red)">Red zone</span> = danger zone: you owe more than the car is worth (GAP risk). &nbsp;
+      <span style="color:var(--green)">Green zone</span> = safe: car is worth more than you owe (you have equity). &nbsp;
+      <span style="color:var(--purple)">Purple line</span> = total you'd have paid the dealer for GAP by that month. &nbsp;
+      Tap or hover any point for details.
+    </div>
+    <canvas id="chart" style="width:100%;max-height:380px;"></canvas>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-line" style="background:var(--blue)"></div> What You Owe (Loan Balance)</div>
+      <div class="legend-item"><div class="legend-line" style="background:var(--green)"></div> Car's Market Value</div>
+      <div class="legend-item"><div class="legend-line" style="background:var(--purple)"></div> Dealer GAP Cost Running Total</div>
+      <div class="legend-item"><div class="legend-dash"></div> GAP risk window closes</div>
+    </div>
+  </div>
+
+  <div class="comparison">
+    <h2>Dealer GAP vs. Adding It to Your Own Insurance</h2>
+    <div class="comp-sub">Same protection — very different price tag</div>
+    <div class="comp-grid">
+      <div class="comp-box dealer">
+        <div class="comp-badge">❌ Skip This</div>
+        <div class="comp-name">Dealer GAP Insurance</div>
+        <div class="comp-row"><span>Monthly cost</span><span>$15/mo</span></div>
+        <div class="comp-row"><span>Runs for</span><span>All 72 months</span></div>
+        <div class="comp-row"><span>Total paid</span><span style="color:var(--red)" id="dealer-total">$1,080</span></div>
+        <div class="comp-row"><span>Actual risk window</span><span id="risk-window">~9 months</span></div>
+        <div class="comp-row"><span>Cost just during risk</span><span style="color:var(--red)" id="dealer-risk-cost">—</span></div>
+        <div class="comp-verdict">
+          You pay for 72 months of protection when you only need about 9. The other 63 months of payments are money in the dealer's pocket.
+        </div>
+      </div>
+      <div class="comp-box insurer">
+        <div class="comp-badge">✅ Do This Instead</div>
+        <div class="comp-name">Add to Your Own Policy</div>
+        <div class="comp-row"><span>Typical annual cost</span><span>~$20–40/yr</span></div>
+        <div class="comp-row"><span>Cancel anytime?</span><span>Yes</span></div>
+        <div class="comp-row"><span>Cost for first 12 months</span><span style="color:var(--green)">~$20–40</span></div>
+        <div class="comp-row"><span>vs. Dealer total</span><span style="color:var(--green)" id="savings">Save ~$1,050</span></div>
+        <div class="comp-row"><span>How to get it</span><span>Call your insurer</span></div>
+        <div class="comp-verdict">
+          Ask your insurer for "loan/lease payoff" or "GAP" coverage. Add it for year one, then cancel it. You get the same protection for a fraction of the price.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-header">
+      <div class="verdict-icon">🏁</div>
+      <div>
+        <div class="verdict-title">The Bottom Line</div>
+        <div class="verdict-sub">Plain English recommendation for your exact loan</div>
+      </div>
+    </div>
+    <div class="verdict-body">
+      <strong>Don't buy the dealer's GAP insurance.</strong> You do have real risk — if your car were totaled today, you'd be on the hook for roughly <strong id="v-peak" style="color:var(--orange)">—</strong> out of pocket. That's real money and worth protecting against.<br/><br/>
+      But that risk disappears entirely around <strong id="v-cross" style="color:var(--yellow)">—</strong>, after which you always own more than you owe. The dealer wants to charge you $15/month for all 72 months ($1,080 total) to cover a risk that only exists for the first several months. That's a terrible deal.<br/><br/>
+      <strong>What to do instead:</strong> Call your car insurance company (Progressive, GEICO, Erie, whoever you use) and ask to add <strong>"loan/lease payoff coverage"</strong> to your policy. It typically costs $20–40 for the whole year. Keep it for the first 12 months to be safe, then drop it. You'll have the exact same protection for roughly <strong style="color:var(--green)">$30 instead of $1,080.</strong>
+    </div>
+  </div>
+
+  <div class="footer">
+    Depreciation modeled from iSeeCars Sonata Hybrid historical data, adjusted for 10,000 mi/yr vs. baseline 13,500 mi/yr (~+4% residual uplift)<br/>
+    Adjusted anchors: ~35% at yr 3 · ~46% at yr 5 · ~58% at yr 6 · applied to $28,350 sale price<br/>
+    Loan amortized at 1.99% APR · ACV ≠ OTD price — taxes &amp; fees don't add to the car's market value · For illustrative purposes only, not financial advice
+  </div>
+</div>
+
+<div id="tooltip">
+  <div class="tt-title" id="tt-time"></div>
+  <div class="tt-row">
+    <div class="tt-label"><div class="tt-dot" style="background:var(--blue)"></div><span style="color:#94a3b8">What You Owe</span></div>
+    <span class="tt-val" id="tt-loan"></span>
+  </div>
+  <div class="tt-row">
+    <div class="tt-label"><div class="tt-dot" style="background:var(--green)"></div><span style="color:#94a3b8">Car Worth</span></div>
+    <span class="tt-val" id="tt-car"></span>
+  </div>
+  <div class="tt-row">
+    <div class="tt-label"><div class="tt-dot" style="background:var(--purple)"></div><span style="color:#94a3b8">GAP Paid So Far</span></div>
+    <span class="tt-val" id="tt-gap-paid"></span>
+  </div>
+  <div class="tt-divider"></div>
+  <div class="tt-status" id="tt-status"></div>
+</div>
+
+<script>
+const PRINCIPAL = 28600, ANNUAL_RATE = 0.0199, MONTHS = 72;
+const CAR_START = 28350, GAP_MO = 15;
+
+// 10k mi/yr adjusted anchors (+4% residual vs iSeeCars 13,500 mi/yr baseline)
+const val36 = CAR_START * (1 - 0.35);  // $18,428
+const val72 = CAR_START * (1 - 0.58);  // $11,907
+const r1 = Math.pow(val36 / CAR_START, 1/36);
+const r2 = Math.pow(val72 / val36, 1/36);
+const mo_rate = ANNUAL_RATE / 12;
+const payment = (PRINCIPAL * mo_rate * Math.pow(1+mo_rate,MONTHS)) / (Math.pow(1+mo_rate,MONTHS)-1);
+
+const months=[], loans=[], cars=[], gaps=[];
+let bal = PRINCIPAL;
+for(let m=0;m<=MONTHS;m++){
+  const c = m<=36 ? CAR_START*Math.pow(r1,m) : val36*Math.pow(r2,m-36);
+  months.push(m); loans.push(Math.round(bal)); cars.push(Math.round(c)); gaps.push(m*GAP_MO);
+  if(m<MONTHS){ const i=bal*mo_rate; bal-=(payment-i); }
+}
+
+const fmt = v => '$'+Math.round(v).toLocaleString();
+const day1 = Math.max(0, loans[0]-cars[0]);
+let cross=null, maxG=0, maxGM=0;
+for(let i=0;i<loans.length;i++){
+  const g=loans[i]-cars[i];
+  if(g>maxG){maxG=g;maxGM=i;}
+  if(cross===null&&g<=0)cross=i;
+}
+
+document.getElementById('paymentDisplay').textContent=fmt(payment)+'/mo';
+document.getElementById('s-gap').textContent=fmt(day1);
+document.getElementById('s-peak').textContent=fmt(maxG);
+document.getElementById('s-peak-sub').textContent=`Peak risk at Month ${maxGM}`;
+document.getElementById('s-cross').textContent=cross?`Month ${cross}`:'N/A';
+document.getElementById('s-gapcost').textContent=fmt(72*GAP_MO);
+const rw=cross||MONTHS;
+document.getElementById('dealer-total').textContent=fmt(72*GAP_MO);
+document.getElementById('risk-window').textContent=`First ${rw} months`;
+document.getElementById('dealer-risk-cost').textContent=fmt(rw*GAP_MO);
+document.getElementById('savings').textContent=`Save ~${fmt(72*GAP_MO-30)}`;
+document.getElementById('v-peak').textContent=fmt(maxG);
+document.getElementById('v-cross').textContent=cross?`Month ${cross} (~${(cross/12).toFixed(1)} years in)`:'N/A';
+
+// Plugins
+const gapFill = {
+  id:'gapFill',
+  beforeDraw(ch){
+    const {ctx,chartArea,scales:{x,y}}=ch;
+    const m0=ch.getDatasetMeta(0).data, m1=ch.getDatasetMeta(1).data;
+    ctx.save();
+    ctx.beginPath(); ctx.rect(chartArea.left,chartArea.top,chartArea.right-chartArea.left,chartArea.bottom-chartArea.top); ctx.clip();
+    for(let i=0;i<m0.length-1;i++){
+      ctx.beginPath();
+      ctx.moveTo(m0[i].x,m0[i].y); ctx.lineTo(m0[i+1].x,m0[i+1].y);
+      ctx.lineTo(m0[i+1].x,m1[i+1].y); ctx.lineTo(m0[i].x,m1[i].y);
+      ctx.closePath();
+      ctx.fillStyle=m0[i].y<m1[i].y?'rgba(248,113,113,0.14)':'rgba(16,185,129,0.11)';
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+};
+const crossLine = {
+  id:'crossLine',
+  afterDraw(ch){
+    if(!cross) return;
+    const {ctx,scales:{x},chartArea}=ch;
+    const xp=x.getPixelForValue(cross);
+    ctx.save();
+    ctx.setLineDash([5,5]); ctx.strokeStyle='#facc15'; ctx.lineWidth=1.5; ctx.globalAlpha=0.8;
+    ctx.beginPath(); ctx.moveTo(xp,chartArea.top); ctx.lineTo(xp,chartArea.bottom); ctx.stroke();
+    ctx.setLineDash([]); ctx.globalAlpha=1;
+    ctx.font="bold 10px 'Inter',sans-serif"; ctx.fillStyle='#facc15'; ctx.textAlign='center';
+    ctx.fillText('Risk gone ↑',xp,chartArea.top-7);
+    ctx.restore();
+  }
+};
+Chart.register(gapFill,crossLine);
+
+const canvas=document.getElementById('chart');
+const chart=new Chart(canvas,{
+  type:'line',
+  data:{
+    labels:months,
+    datasets:[
+      {label:'Loan',data:loans,borderColor:'#3b82f6',borderWidth:2.5,pointRadius:0,pointHoverRadius:6,pointHoverBackgroundColor:'#3b82f6',pointHoverBorderColor:'#07111c',pointHoverBorderWidth:2,tension:0.3,fill:false,order:1},
+      {label:'Car',data:cars,borderColor:'#10b981',borderWidth:2.5,pointRadius:0,pointHoverRadius:6,pointHoverBackgroundColor:'#10b981',pointHoverBorderColor:'#07111c',pointHoverBorderWidth:2,tension:0.3,fill:false,order:2},
+      {label:'GAP Cost',data:gaps,borderColor:'#a78bfa',borderWidth:2,pointRadius:0,pointHoverRadius:5,pointHoverBackgroundColor:'#a78bfa',pointHoverBorderColor:'#07111c',pointHoverBorderWidth:2,tension:0,fill:false,order:3}
+    ]
+  },
+  options:{
+    responsive:true,
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false},tooltip:{enabled:false}},
+    scales:{
+      x:{ticks:{color:'#475569',font:{family:"'IBM Plex Mono',monospace",size:11},callback:v=>v%12===0?`Yr ${v/12}`:'',maxRotation:0},grid:{color:'rgba(255,255,255,0.04)'},border:{color:'rgba(255,255,255,0.08)'}},
+      y:{ticks:{color:'#475569',font:{family:"'IBM Plex Mono',monospace",size:11},callback:v=>'$'+(v>=1000?(v/1000).toFixed(0)+'k':v)},grid:{color:'rgba(255,255,255,0.04)'},border:{display:false},min:0,max:32000}
+    }
+  }
+});
+
+// Tooltip
+const tip=document.getElementById('tooltip');
+function show(cx,cy,i){
+  const m=months[i],lo=loans[i],ca=cars[i],gp=gaps[i],diff=lo-ca;
+  const yr=Math.floor(m/12),mo=m%12;
+  document.getElementById('tt-time').textContent=yr>0?`Year ${yr}${mo?`, Month ${mo}`:''}` :`Month ${m}`;
+  document.getElementById('tt-loan').textContent=fmt(lo);
+  document.getElementById('tt-car').textContent=fmt(ca);
+  document.getElementById('tt-gap-paid').textContent=fmt(gp);
+  const st=document.getElementById('tt-status');
+  if(diff>0){st.className='tt-status gap';st.textContent=`⚠️ If totaled now: you'd owe ${fmt(diff)} out of pocket`;}
+  else{st.className='tt-status equity';st.textContent=`✅ You're safe — car worth ${fmt(-diff)} more than loan`;}
+  let l=cx+16,t=cy-70;
+  if(l+230>window.innerWidth)l=cx-240;
+  if(t<8)t=8;
+  tip.style.left=l+'px'; tip.style.top=t+'px'; tip.classList.add('visible');
+}
+canvas.addEventListener('mousemove',e=>{
+  const pts=chart.getElementsAtEventForMode(e,'index',{intersect:false},true);
+  if(!pts.length){tip.classList.remove('visible');return;}
+  show(e.clientX,e.clientY,pts[0].index);
+});
+canvas.addEventListener('mouseleave',()=>tip.classList.remove('visible'));
+canvas.addEventListener('touchmove',e=>{
+  e.preventDefault();
+  const t=e.touches[0];
+  canvas.dispatchEvent(new MouseEvent('mousemove',{clientX:t.clientX,clientY:t.clientY}));
+},{passive:false});
+canvas.addEventListener('touchend',()=>tip.classList.remove('visible'));
+</script>
+
+</body>
+</html>
